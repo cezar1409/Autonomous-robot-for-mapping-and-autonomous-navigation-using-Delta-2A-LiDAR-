@@ -38,6 +38,17 @@ This project implements a complete autonomous mobile robot system capable of rea
 3. Mount mecanum wheels and connect to Moebius shield
 4. Power system and verify connections
 
+LidarDelta2A.py
+Handles communication with the Delta-2A LiDAR sensor over serial (230400 baud). Parses proprietary frames divided into 16 sectors (22.5° each), each with up to 52 points (angle, distance, intensity). Enables continuous real-time data streaming.
+
+rover.ino (Arduino Code)
+Controls a mecanum-wheel robot via Moebius motor shield. Defines PWM and direction pins for four motors and supports forward, lateral, and rotational motion. Receives single-character movement commands over UART (9600 baud) from a Raspberry Pi. Includes safety stops and speed control.
+
+test_v3.py (Main Navigation)
+Implements autonomous navigation using LiDAR data. Uses virtual repulsion for obstacle avoidance, detects corners, and makes smart turns. Prioritizes lateral over backward moves. Includes live matplotlib visualization and separates command/control timing for efficiency.
+
+test1.py (Basic Navigation)
+A simple test script for the LiDAR. Establishes serial communication, parses basic distance/power data, and checks sensor functionality. Used for calibration and debugging before running full navigation.
 
 Algorithms Implemented:
 
